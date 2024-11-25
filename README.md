@@ -1,24 +1,67 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This README would normally document whatever steps are necessary to get the application up and running.
 
-Things you may want to cover:
+## To setup this application:
 
-* Ruby version
+* Clone the application
+```bash
+git clone git@github.com:shashank76/rails-graphql.git
+```
 
-* System dependencies
+```bash
+cd rails-graphql
 
-* Configuration
+bundle install
+```
 
-* Database creation
+* Database creation and data seeding
 
-* Database initialization
+```bash
+rails db:create db:migrate db:seed
+```
 
-* How to run the test suite
+* run server and test graphQL apis
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+rails server
+```
 
-* Deployment instructions
+* After running the server open link in browser
 
-* ...
+```bash
+http://localhost:3000/graphiql
+```
+* and run the below query in query prompt
+
+- Query for list all blogs
+```bash
+{
+  blogs{
+    id
+    title
+    description
+  	userName
+    updatedAt
+	}
+}
+```
+
+- Query for get a specific blog
+
+```bash
+query getBlog($id: ID!){
+  blog(id: $id){
+    title
+    description
+    userName
+    updatedAt
+  }
+}
+```
+and use below id structure in variables
+```bash
+{
+  "id": 2
+}
+```
